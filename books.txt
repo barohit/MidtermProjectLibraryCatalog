@@ -1,3 +1,4 @@
 Murder on the Orient Express,Agatha Christie,false,2019-05-10
 Harry Potter,JK Rowling,false,2019-05-10
 One Piece,Eiichiro Oda,false,2019-05-10
+Harry Potter and the Sorcerers Stone,JK Rowling,false,2019-05-10

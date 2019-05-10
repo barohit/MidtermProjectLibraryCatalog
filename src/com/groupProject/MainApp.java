@@ -51,7 +51,7 @@ public class MainApp {
 						
 						while (validInput == false) {
 							try {
-								result = authorBooks.get(userAnswer2); 
+								result = authorBooks.get(userAnswer2 - 1); 
 								validInput = true; 
 							} catch (IndexOutOfBoundsException e) {
 								System.out.println("Sorry, invalid input. Please try again: ");  
