@@ -2,3 +2,11 @@ Murder on the Orient Express,Agatha Christie,false,2019-05-10
 Harry Potter,JK Rowling,false,2019-05-10
 One Piece,Eiichiro Oda,false,2019-05-10
 Harry Potter and the Sorcerers Stone,JK Rowling,false,2019-05-10
+The ABC murders,Agatha Christie,false,2019-05-10
+The Mamba Mentality: How I Play;,Kobe Bryant,false,2019-05-10
+1984,George Orwell,false,2019-05-10
+The Adventures of Huckleberry Finn,Mark Twain ,false,2019-05-10
+The adventures of Tom Sawyer,Mark Twain,false,2019-05-10
+To Kill a Mockingbird,Harper Lee,false,2019-05-10
+Dreams From my Father,Barack Obama,false,2019-05-10
+The C Programming Language,Dennis M. Ritchie & Brian W. Kerningham,false,2019-05-10
