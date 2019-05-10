@@ -139,7 +139,7 @@ public class SearchEngine {
 	
 	public static Book searchByTitle(ArrayList<Book> books) {
 		Scanner scan = new Scanner(System.in); 
-		System.out.println("Enter the author's last name"); 
+		System.out.println("Enter the book's title"); 
 		String userInput = Validator.validateString(scan); 
 		Book temp = null; 
 		for (Book b: books) {
