@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SearchEngine {
@@ -125,10 +126,12 @@ public class SearchEngine {
 	public static ArrayList<Book> searchByAuthor(ArrayList<Book> books) {
 		Scanner scan = new Scanner(System.in); 
 		System.out.println("Enter the author's last name"); 
-		String userInput = Validator.validateString(scan); 
+		String userInput = Validator.validateString(scan).toLowerCase(); 
+		
+		
 		ArrayList<Book> returnList = new ArrayList<Book>(); 
 		for (Book b: books) {
-			if (b.getAuthor().equals(userInput)) {
+			if (b.getAuthor().toLowerCase().contains(userInput)) {
 				returnList.add(b); 
 			}
 		}

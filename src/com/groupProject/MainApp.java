@@ -60,15 +60,24 @@ public class MainApp {
 	
 						}		
 					}
-					else {
+					else if (authorBooks.size() ==  1) {
 						result = authorBooks.get(0); 
+					} else {
+						try {
+						throw new IndexOutOfBoundsException(); 
+						} catch (IndexOutOfBoundsException e) {
+						System.out.println("Sorry, nothing was found"); 
 					}
-				} else if (userAnswer1.equalsIgnoreCase("Title")) {
+				}} else if (userAnswer1.equalsIgnoreCase("Title")) {
 					result = SearchEngine.searchByTitle(SearchEngine.ALFromFile());
 				} else {
 					System.out.println("Answer not recongized");
 				}
+				try {
 				checkOut(result); 
+				} catch (NullPointerException e) {
+					System.out.println("Sorry, nothing was found"); 
+				}
 				continue; 
 			} else if (userAnswer == 3) {
 				System.out.println("Enter an author name"); 
