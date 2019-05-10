@@ -119,7 +119,7 @@ public class SearchEngine {
 	
 	public static ArrayList<Book> searchByAuthor(ArrayList<Book> books) {
 		Scanner scan = new Scanner(System.in); 
-		System.out.println("Enter the author's last name"); 
+		System.out.println("Enter the author's first or last name: "); 
 		String userInput = Validator.validateString(scan).toLowerCase(); 
 		
 		
