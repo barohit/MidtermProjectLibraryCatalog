@@ -132,8 +132,7 @@ public class Validator {
 	
 	public static String validateString (Scanner scan) {
 		boolean validInput = false; 
-		String userInput = ""; 
-		scan.nextLine(); 
+		String userInput = "";  
 		while (validInput == false) { 
 			try { 
 				userInput = scan.nextLine();

@@ -1,6 +1,9 @@
 package com.groupProject;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -13,58 +16,86 @@ public class MainApp {
 		ArrayList<String> menu = new ArrayList<>();
 		menu.add("1. List of books");
 		menu.add("2. Search for a book");
-		menu.add("3. add a book");
-		menu.add("4. Check book out");
-		menu.add("5. Exit program");
-		for (int i = 0; i < menu.size(); i++) {
-			System.out.println(menu.get(i));
-		}
-
-		System.out.println("Please pick the number of the task you would like to complete");
-		int userAnswer = scan.nextInt();
-		scan.nextLine();
-
-		if (userAnswer == 1) {
-			SearchEngine.readFromFile();
-
-		} else if (userAnswer == 2) {
-			System.out.println("Would you like to search by author or title");
-			userAnswer1 = scan.nextLine();
-			if (userAnswer1.equalsIgnoreCase("Author")) {
-				ArrayList<Book> authorBooks = new ArrayList<Book>();
-				authorBooks = SearchEngine.searchByAuthor(SearchEngine.ALFromFile());
-				if (authorBooks.size() > 1) {
-					for (Book b : authorBooks) {
-						System.out.println(b);
-					}
-
-				}
-			} else if (userAnswer1.equalsIgnoreCase("Title")) {
-				SearchEngine.searchByTitle(SearchEngine.ALFromFile());
-			} else {
-				System.out.println("Answer not recongized");
+		menu.add("3. Add a book");
+		menu.add("4. Exit program");
+		char continuing = 'y';
+		while (continuing =='y') {
+			for (int i = 0; i < menu.size(); i++) {
+				System.out.println(menu.get(i));
 			}
-		} else if (userAnswer == 3) {
-
-		} else if (userAnswer == 4) {
-
-		} else if (userAnswer == 5) {
-
-		} else {
-			System.out.println("Input not found please enter something new");
-		}
+	
+			System.out.println("Please pick the number of the task you would like to complete");
+			int userAnswer = Validator.validateInt(scan);
+			scan.nextLine();
+	
+			if (userAnswer == 1) {
+				SearchEngine.readFromFile();
+				continue; 
+	
+			} else if (userAnswer == 2) {
+				System.out.println("Would you like to search by author or title");
+				userAnswer1 = Validator.validateString(scan);
+				Book result = null; 
+				
+				if (userAnswer1.equalsIgnoreCase("Author")) {
+					ArrayList<Book> authorBooks = new ArrayList<Book>();
+					authorBooks = SearchEngine.searchByAuthor(SearchEngine.ALFromFile());
+					if (authorBooks.size() > 1) {
+						System.out.println("Which is your choice? They are numbered in the order listed: "); 
+						for (Book b : authorBooks) {
+							System.out.println(b);
+						}
+						int userAnswer2 = Validator.
+								validateInt(scan); 
+						boolean validInput = false; 
+						
+						while (validInput == false) {
+							try {
+								result = authorBooks.get(userAnswer2); 
+								validInput = true; 
+							} catch (IndexOutOfBoundsException e) {
+								System.out.println("Sorry, invalid input. Please try again: ");  
+								continue;  
+							}
+	
+						}		
+					}
+					else {
+						result = authorBooks.get(0); 
+					}
+				} else if (userAnswer1.equalsIgnoreCase("Title")) {
+					result = SearchEngine.searchByTitle(SearchEngine.ALFromFile());
+				} else {
+					System.out.println("Answer not recongized");
+				}
+				checkOut(result); 
+				continue; 
+			} else if (userAnswer == 3) {
+				System.out.println("Enter an author name"); 
+				String an = Validator.validateString(scan); 
+				System.out.println("Enter a title");  
+				String tl = Validator.validateString(scan); 
+				SearchEngine.addToList(an, tl); 
+				continue; 
+			} else if (userAnswer == 4) {
+				System.out.println("Have a nice day!"); 
+				continuing = 'n'; 
+			} else {
+				System.out.println("Input not found please enter something new");
+				continue; 
+			}
 	}
+}
 
 	public static void checkOut(Book book) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 		if (book.getStatus() == true) {
 			System.out.println("Sorry, the book is checked out");
 		} else if (book.getStatus() == false) {
 			book.setStatus(true);
-			Calendar c = Calendar.getInstance();
-			c.add(Calendar.DAY_OF_MONTH, 14);
-			String format = sdf.format(c.getTime());
-			book.setDueDate(format);
+			LocalDate today = LocalDate.now(); 
+			 LocalDate twoWeeksLater = today.plus(2, ChronoUnit.WEEKS);
+			 book.setDueDateDate(twoWeeksLater);
 			System.out.println("You have checked out " + book.getTitle());
 		}
 	}

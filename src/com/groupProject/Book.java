@@ -2,33 +2,41 @@ package com.groupProject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 public class Book {
 	
 	private String title;
 	private String author;
 	private Boolean status;
-	private Date dueDate;
+	private LocalDate dueDate;
+	
 	public Boolean getStatus() {
 		return status;
 	}
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	public Date getDueDate() {
+	public LocalDate getDueDate() {
 		return dueDate;
 	}
 	public void setDueDate(String dueDa) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		Date d = null;
-		try {
-			d = sdf.parse(dueDa);
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+		Locale lc = new Locale("EN", "US");
+		dtf = dtf.withLocale(lc);
+		
+		LocalDate d = LocalDate.parse(dueDa, dtf);
 		this.dueDate = d;
+		
+	}
+	
+	public void setDueDateDate(LocalDate dueDa) {
+		
+		this.dueDate =  dueDa;
+		
 	}
 	public String getTitle() {
 		return title;
@@ -36,7 +44,7 @@ public class Book {
 	public String getAuthor() {
 		return author;
 	}
-	public Book(String title, String author, Boolean status, Date dueDate) {
+	public Book(String title, String author, Boolean status, LocalDate dueDate) {
 		super();
 		this.title = title;
 		this.author = author;
