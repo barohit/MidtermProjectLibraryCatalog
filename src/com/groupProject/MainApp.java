@@ -34,7 +34,7 @@ public class MainApp {
 	
 			} else if (userAnswer == 2) {
 				System.out.println("Would you like to search by author or title");
-				userAnswer1 = Validator.validateString(scan);
+				userAnswer1 = Validator.validateStringTitle(scan);
 				Book result = null; 
 				
 				if (userAnswer1.equalsIgnoreCase("Author")) {
@@ -81,9 +81,9 @@ public class MainApp {
 				continue; 
 			} else if (userAnswer == 3) {
 				System.out.println("Enter an author name"); 
-				String an = Validator.validateString(scan); 
+				String an = Validator.validateStringTitle(scan); 
 				System.out.println("Enter a title");  
-				String tl = Validator.validateString(scan); 
+				String tl = Validator.validateStringTitle(scan); 
 				SearchEngine.addToList(an, tl); 
 				continue; 
 			} else if (userAnswer == 4) {

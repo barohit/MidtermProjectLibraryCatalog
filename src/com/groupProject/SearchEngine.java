@@ -65,8 +65,8 @@ public class SearchEngine {
 			System.out.println("Sorry, the file is empty");  
 		} 
 		for (Book currBook: books) {
+
 			System.out.printf("Author: %-15s\n Title: %-15s\n Due Date: %-15s\n Checked out: %-15s\n\n",currBook.getAuthor(),currBook.getTitle(),currBook.getDueDate(),currBook.getStatus()); 
-		
 		}
 	}	
 		public static ArrayList<Book> ALFromFile() {  
@@ -120,7 +120,7 @@ public class SearchEngine {
 	public static ArrayList<Book> searchByAuthor(ArrayList<Book> books) {
 		Scanner scan = new Scanner(System.in); 
 		System.out.println("Enter the author's first or last name"); 
-		String userInput = Validator.validateString(scan).toLowerCase(); 
+		String userInput = Validator.validateStringTitle(scan).toLowerCase(); 
 		
 		
 		ArrayList<Book> returnList = new ArrayList<Book>(); 
@@ -137,7 +137,7 @@ public class SearchEngine {
 	public static Book searchByTitle(ArrayList<Book> books) {
 		Scanner scan = new Scanner(System.in); 
 		System.out.println("Enter the book's title"); 
-		String userInput = Validator.validateString(scan); 
+		String userInput = Validator.validateStringTitle(scan); 
 		Book temp = null; 
 		for (Book b: books) {
 			if (b.getTitle().equals(userInput)) {

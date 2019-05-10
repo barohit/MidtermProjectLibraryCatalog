@@ -151,6 +151,24 @@ public class Validator {
 		return userInput; 
 	}
 	
+	public static String validateStringTitle (Scanner scan) {
+		boolean validInput = false; 
+		String userInput = "";  
+		while (validInput == false) { 
+			try { 
+				userInput = scan.nextLine();
+				if (userInput.isEmpty()) {
+					throw new IllegalArgumentException(); 
+				}
+				validInput = true; 
+			} catch (IllegalArgumentException e) {
+				System.out.println("Error, invalid input. Please try again: ");  
+				scan.nextLine();
+				continue; 
+			}
+		}
+		return userInput; 
+	}
 	public static String validateGameChoice (Scanner scan) {
 		String userInput = validateString(scan); 
 		while (!(userInput.equalsIgnoreCase("Rock") || userInput.equalsIgnoreCase("Paper") || userInput.equalsIgnoreCase("Scissors")) ) {
