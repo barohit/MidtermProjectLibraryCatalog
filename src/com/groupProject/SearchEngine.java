@@ -10,17 +10,11 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SearchEngine {
 	
@@ -71,7 +65,7 @@ public class SearchEngine {
 			System.out.println("Sorry, the file is empty");  
 		} 
 		for (Book currBook: books) {
-			System.out.println(currBook); 
+			System.out.printf("Author:%-15 Title:%-15: Due Date:%-15 Checked out:",currBook.getAuthor(),currBook.getTitle(),currBook.getDueDate(),currBook.getStatus()); 
 		
 		}
 	}	
