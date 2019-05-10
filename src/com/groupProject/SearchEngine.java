@@ -65,7 +65,7 @@ public class SearchEngine {
 			System.out.println("Sorry, the file is empty");  
 		} 
 		for (Book currBook: books) {
-			System.out.printf("Author:%-15 Title:%-15: Due Date:%-15 Checked out:",currBook.getAuthor(),currBook.getTitle(),currBook.getDueDate(),currBook.getStatus()); 
+			System.out.printf("Author: %-15s\nTitle: %-15s\nDue Date: %-15s\nChecked out: %-15s\n\n ",currBook.getAuthor(),currBook.getTitle(),currBook.getDueDate(),currBook.getStatus()); 
 		
 		}
 	}	
