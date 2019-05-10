@@ -43,7 +43,7 @@ public class MainApp {
 					if (authorBooks.size() > 1) {
 						System.out.println("Which is your choice? They are numbered in the order listed: "); 
 						for (Book b : authorBooks) {
-							System.out.println(b);
+							System.out.printf("Author: %-15s\nTitle: %-15s\nDue Date: %-15s\nChecked out: %-15s\n\n ", b.getAuthor(),b.getTitle(),b.getDueDate(),b.getStatus()); 
 						}
 						int userAnswer2 = Validator.
 								validateInt(scan); 
