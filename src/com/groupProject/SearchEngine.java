@@ -119,14 +119,8 @@ public class SearchEngine {
 	
 	public static ArrayList<Book> searchByAuthor(ArrayList<Book> books) {
 		Scanner scan = new Scanner(System.in); 
-<<<<<<< HEAD
 		System.out.println("Enter the author's first or last name"); 
-		String userInput = Validator.validateStringTitle(scan).toLowerCase(); 
-=======
-		System.out.println("Enter the author's first or last name: "); 
-		String userInput = Validator.validateString(scan).toLowerCase(); 
->>>>>>> e36b97a32d22b6656219c2ac6e3affe2b65a61aa
-		
+		String userInput = Validator.validateStringTitle(scan).toLowerCase(); 		
 		
 		ArrayList<Book> returnList = new ArrayList<Book>(); 
 		for (Book b: books) {
