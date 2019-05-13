@@ -105,6 +105,9 @@ public class MainApp {
 			LocalDate today = LocalDate.now(); 
 			 LocalDate twoWeeksLater = today.plus(2, ChronoUnit.WEEKS);
 			 book.setDueDateDate(twoWeeksLater);
+			 SearchEngine.copyToFileMinusBook(book);
+			 SearchEngine.writeToFile(book);
+			 
 			System.out.println("You have checked out " + book.getTitle());
 		}
 	}

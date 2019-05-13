@@ -32,7 +32,13 @@ public class SearchEngine {
 
 	}
 	
-	public static void readFromFile() {  
+	public static void deleteFile() {
+		Path path = Paths.get(filePath); 
+		File f = path.toFile();
+		f.delete(); 
+	}
+	
+	public static void readFromFile() { 
 		createFile(); 
 		Path path = Paths.get(filePath); 
 		File f = path.toFile();  
@@ -69,6 +75,48 @@ public class SearchEngine {
 			System.out.printf("Author: %-15s\n Title: %-15s\n Due Date: %-15s\n Checked out: %-15s\n\n",currBook.getAuthor(),currBook.getTitle(),currBook.getDueDate(),currBook.getStatus()); 
 		}
 	}	
+	
+	public static void copyToFileMinusBook(Book b) {  
+		 
+		Path path = Paths.get(filePath); 
+		File f = path.toFile();  
+		BufferedReader br = null; 
+		ArrayList <Book> books = new ArrayList<Book>(); 
+		try {
+			br = new BufferedReader(new FileReader(f));
+			String line = br.readLine(); 
+			while (line != null) {
+				 
+				String[] components = line.split(",");
+				
+				//converts to boolean and Date so that the constructor will take them. 
+				boolean constructorVal = Boolean.parseBoolean(components[2]); 
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				Locale lc = new Locale("EN", "US");
+				dtf = dtf.withLocale(lc);
+				
+				LocalDate constructorVal2 = LocalDate.parse(components[3], dtf);
+				
+				Book bo = new Book(components[0], components[1], constructorVal, constructorVal2);
+				if (!bo.getAuthor().equalsIgnoreCase(b.getAuthor()) && !bo.getTitle().equalsIgnoreCase(b.getTitle())) {
+					books.add(bo); 
+				}
+				line = br.readLine(); 
+			}
+			br.close(); 
+		} catch (FileNotFoundException e) {
+			System.out.println("File not created"); 
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Sorry, the file is empty");  
+		} 
+		deleteFile(); 
+		createFile();
+		for (Book currBook: books) {
+
+			writeToFile(currBook); 
+		}
+	}
 		public static ArrayList<Book> ALFromFile() {  
 			Path path = Paths.get(filePath); 
 			File f = path.toFile();  
